@@ -219,7 +219,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Player"))
         self.MinusButton.setText(_translate("MainWindow", "-"))
         self.PlusButton.setText(_translate("MainWindow", "+"))
         self.RewindLabel_2.setText(_translate("MainWindow", "15 sec"))
@@ -248,4 +248,3 @@ class Ui_MainWindow(object):
         self.RefeshButton.setText(_translate("MainWindow", "Refresh"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("MainWindow", "Player"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "Tab 2"))
-

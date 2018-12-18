@@ -3,18 +3,18 @@ import os
 import time
 import json
 import pyglet
-from threading import Thread
+#from threading import Thread
 from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow
 from untitled import Ui_MainWindow
 
 
-def refresh(path):
-    list_of_music = []
-    if path is not None:
-        for obj in os.listdir(path):
-            if obj.split('.')[-1] == 'mp3':
-                list_of_music.append(obj)
-    return list_of_music
+#def refresh(path):
+    #list_of_music = []
+    #if path is not None:
+        #for obj in os.listdir(path):
+            #if obj.split('.')[-1] == 'mp3':
+                #list_of_music.append(obj)
+    #return list_of_music
 
 
 class MyWidget(QMainWindow,Ui_MainWindow):
@@ -26,12 +26,12 @@ class MyWidget(QMainWindow,Ui_MainWindow):
         self.rewind_slider = 0
         self.status = 'Empty'
         
-        try:
-            with open('music folder.json') as input_file:
-                self.music_path = json.load(input_file)
-        except FileNotFoundError:
-            self.music_path = None
-        self.list_of_music = refresh(self.music_path)
+        #try:
+            #with open('music folder.json') as input_file:
+                #self.music_path = json.load(input_file)
+        #except FileNotFoundError:
+            #self.music_path = None
+        #self.list_of_music = refresh(self.music_path)
         self.VolumeSlider.setValue(10)
         self.MinusButton.clicked.connect(self.minus)
         self.PauseButton.clicked.connect(self.pause)
@@ -44,15 +44,15 @@ class MyWidget(QMainWindow,Ui_MainWindow):
     def change_volume(self, number):
         self.player.volume = number / 10    
         
-    def control_time(self):
-        while self.status == 'Empty':
-            time.sleep(1)
-        print(1)
-        while self.current_pos < self.length:
-            if self.status == 'Full':
-                self.current_pos = self.player.time
-                self.CurrentTimeBrowser.setText(str(int(self.current_pos) // 60) + ':' + str(int(self.current_pos) % 60).zfill(2))
-            time.sleep(1)
+    #def control_time(self):
+        #while self.status == 'Empty':
+            #time.sleep(1)
+        #print(1)
+        #while self.current_pos < self.length:
+            #if self.status == 'Full':
+                #self.current_pos = self.player.time
+                #self.CurrentTimeBrowser.setText(str(int(self.current_pos) // 60) + ':' + str(int(self.current_pos) % 60).zfill(2))
+            #time.sleep(1)
         
     def minus(self):
         shift = max(0, self.player.time - ARRAY[self.rewind_slider])
@@ -88,9 +88,4 @@ ARRAY = [5, 15, 60, 300]
 app = QApplication(sys.argv)
 ex = MyWidget()
 ex.show()
-t1 = Thread(target=app.exec_)
-t2 = Thread(target=ex.control_time)
-t1.start()
-t2.start()
-t1.join()
-t2.join()
+app.exec_()
