@@ -3,7 +3,6 @@ import os
 import time
 import json
 import pyglet
-from threading import Thread
 import keyboard
 from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow
 from untitled import Ui_MainWindow
@@ -95,7 +94,7 @@ class MyWidget(QMainWindow,Ui_MainWindow):
             self.player.queue(music)
             self.MusicSlider.setMaximum(self.length)
             self.MusicLengthLabel.setText(str(int(self.length) // 60) + ':' + str(int(self.length) % 60).zfill(2))
-            #self.CurrentTrackBrowser.setText(self.list_of_music[0])
+            self.CurrentTrackBrowser.setText(self.list_of_music[0])
             self.status = 'Full'
         self.Timer.start()
         self.player.play()     
